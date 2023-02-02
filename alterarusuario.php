@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
     $sql = "UPDATE usuarios SET usu_senha = '$senha', usu_nome = '$nome' WHERE usu_id = id";
     mysqli_query($link, $sql);
     header("Location: listausuario.php");
-    echo "<scripit>alert('USUARIO ALTERADO COM SUCESSO!');</script>";
+    echo "<scripit>window.alert('USUARIO ALTERADO COM SUCESSO!');</script>";
     exit();
 }
 
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
 $id = $_GET['id'];
 $sql = "SELECT * FROM usuarios WHERE usu_id = $id";
 $resultado = mysqli_query($link, $sql);
-while ($tbl = mysqli_fetch_array($resultado)) {
+while($tbl = mysqli_fetch_array($resultado)){
     $nome = $tbl[1];
     $senha = $tbl[2];
 }
@@ -30,6 +30,7 @@ while ($tbl = mysqli_fetch_array($resultado)) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alterar Usuario</title>
+    <link rel="stylesheet" href="./estilo.css">
 </head>
 
 <body>
@@ -37,9 +38,9 @@ while ($tbl = mysqli_fetch_array($resultado)) {
         <form action="alterarusuario.php" method="post">
             <input type="hidden" value="<?=$id?>" name="id">;
             <label>Nome</label>;
-            <input type="text" name="nome" id="nome" value="<?=$nome?>">;
+            <input type="text" name="nome" id="nome" value="<?=$nome?>" required>;
             <label>SENHA</label>;
-            <input type="password" name="senha" value="<?=$senha?>"
+            <input type="password" name="senha" value="<?=$senha?>" required>;
             <br>
             <input type="submit" value="SALVAR">;
         </form>

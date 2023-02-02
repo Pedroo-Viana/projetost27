@@ -5,18 +5,18 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     Include ("conectaDB.php");
 
     #VERIFICA USUARIO EXISTE
-    $sql = "SELECT COUNT(usu_id) FROM usuarios WHERE usu_nome = '$nome' AND usu_senha= '$senha'";
+    $sql = "SELECT COUNT(usu_id) FROM usuarios WHERE usu_nome= '$nome' AND usu_senha= '$senha'";
     $resultado = mysqli_query($link, $sql);
     while($tbl = mysqli_fetch_array($resultado)){
         $cont =$tbl[0];
     }
     if($cont == 1){
-        echo"<script>windown.alert('USUARIO JA CADASTRADO');</script>";
+        echo"<script>window.alert('USUARIO JA CADASTRADO');</script>";
     }
     else{
         $sql = "INSERT INTO usuarios (usu_nome, usu_senha) VALUES('$nome', '$senha')";
         mysqli_query($link,$sql);
-        header(("Location: listausuario.php"));
+        header("Location: listausuario.php");
     }
 }
 ?>
@@ -42,6 +42,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
             else{
                 tipo.type = "password";
             }
+            
         }
         </script>
         <!-- FIM DO SCRIPT PARA MOSTARAR A SENHA -->
