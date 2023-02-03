@@ -1,8 +1,10 @@
 <?php
 
 use function PHPSTORM_META\map;
-
+#abre conexão com bancos de dados;
 include('conectaDB.php');
+#passa a instrução para o banco de dados
+#função de instrução : Listar todos  os conteudos da tabela usuarios
 if ($_SERVER['REQUEST_METHOD']=='POST'){
     $id = $_POST['id'];
     $nome = $_POST['nome'];
@@ -36,9 +38,9 @@ while($tbl = mysqli_fetch_array($resultado)){
 <body>
     <div>
         <form action="alterarusuario.php" method="post">
-            <input type="hidden" value="<?=$id?>" name="id">;
-            <label>Nome</label>;
-            <input type="text" name="nome" id="nome" value="<?=$nome?>" required>;
+            <input type="hidden" value="<?=$id?>" name="id">; <!-- Coleta o id de forma oculta -->        
+            <label>Nome</label>; <!-- Coleta o nome do usuario e preenche a txtbox-->
+            <input type="text" name="nome" id="nome" value="<?=$nome?>" required>;<!-- Coleta a senha do usuario e preenche a txtbox-->
             <label>SENHA</label>;
             <input type="password" name="senha" value="<?=$senha?>" required>;
             <br>

@@ -1,8 +1,9 @@
 <?php
+#CAPTURA VARIÁVEIS UTILIZANDO O MÉTODO POST
 if($_SERVER['REQUEST_METHOD']=="POST"){
-    $nome = $_POST['nome'];
-    $password = $_POST['password'];
-    include("conectaDB.php");
+    $nome = $_POST['nome']; #captura variável que esta no name ="password" html
+    $password = $_POST['password']; #captura
+    include("conectaDB.php");#Include chama a conexão com o banco no scripit conectaDB.php
 
     #CONSULTA SQL PARA VERIFICAR USUARIO CADASTRADO
     $sql = "SELECT COUNT(usu_id) FROM usuarios WHERE usu_nome = '$nome' AND usu_senha ='$password'";
