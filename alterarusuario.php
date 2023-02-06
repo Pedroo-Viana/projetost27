@@ -5,23 +5,25 @@ use function PHPSTORM_META\map;
 include('conectaDB.php');
 #passa a instrução para o banco de dados
 #função de instrução : Listar todos  os conteudos da tabela usuarios
-if ($_SERVER['REQUEST_METHOD']=='POST'){
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id'];
     $nome = $_POST['nome'];
-    $sql = "UPDATE usuarios SET usu_senha = '$senha', usu_nome = '$nome' WHERE usu_id = id";
+    $senha = $_POST['senha'];
+    $ativo = $_POST['ativo'];
+    $sql = "UPDATE usuarios SET usu_senha = '$senha', usu_nome = '$nome', usu_ativo = '$ativo' WHERE usu_id = $id";
     mysqli_query($link, $sql);
     header("Location: listausuario.php");
     echo "<scripit>window.alert('USUARIO ALTERADO COM SUCESSO!');</script>";
     exit();
 }
-
 #CAPTURAR ID VIA GET
 $id = $_GET['id'];
 $sql = "SELECT * FROM usuarios WHERE usu_id = $id";
 $resultado = mysqli_query($link, $sql);
-while($tbl = mysqli_fetch_array($resultado)){
+while ($tbl = mysqli_fetch_array($resultado)) {
     $nome = $tbl[1];
     $senha = $tbl[2];
+    $ativo = $tbl[3];
 }
 ?>
 <!DOCTYPE html>
@@ -38,15 +40,20 @@ while($tbl = mysqli_fetch_array($resultado)){
 <body>
     <div>
         <form action="alterarusuario.php" method="post">
-            <input type="hidden" value="<?=$id?>" name="id">; <!-- Coleta o id de forma oculta -->        
-            <label>Nome</label>; <!-- Coleta o nome do usuario e preenche a txtbox-->
-            <input type="text" name="nome" id="nome" value="<?=$nome?>" required>;<!-- Coleta a senha do usuario e preenche a txtbox-->
-            <label>SENHA</label>;
-            <input type="password" name="senha" value="<?=$senha?>" required>;
-            <br>
-            <input type="submit" value="SALVAR">;
-        </form>
+            <input type="hidden" value="<?= $id ?>" name="id"> <!-- Coleta o id de forma oculta -->
+            <label>Nome</label> <!-- Coleta o nome do usuario e preenche a txtbox-->
+            <input type="text" name="nome" id="nome" value="<?= $nome ?>" required><br><!-- Coleta a senha do usuario e preenche a txtbox-->
+            <label>SENHA</label>
+            <input type="password" name="senha" value="<?= $senha ?>" required>
+            <br><br>
+            <label>Status: <?= $check = ($ativo == 's') ? "ATIVO" : "INATIVO"; ?><br></label><br>
+            <input type="radio" name="ativo" value="s">ATIVAR <br>
             
+            <input type="radio" name="ativo" value="n">DESATIVAR 
+            <br>
+            <input type="submit" value="SALVAR">
+        </form>
+
     </div>
 </body>
 

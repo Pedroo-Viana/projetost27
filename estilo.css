@@ -43,6 +43,7 @@ form {
     border-radius: 20px;
     padding: 15px;
     width: 550px;
+    text-align: justify;
 }
 
 form label {
@@ -51,7 +52,7 @@ form label {
 }
 
 form input {
-    width: 400px;
+    width: 200px;
 }
 
 form input[type="submit"] {
