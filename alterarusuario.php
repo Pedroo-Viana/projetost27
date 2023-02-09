@@ -22,7 +22,6 @@ $sql = "SELECT * FROM usuarios WHERE usu_id = $id";
 $resultado = mysqli_query($link, $sql);
 while ($tbl = mysqli_fetch_array($resultado)) {
     $nome = $tbl[1];
-    $senha = $tbl[2];
     $ativo = $tbl[3];
 }
 ?>

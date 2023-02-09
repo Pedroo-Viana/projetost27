@@ -1,6 +1,6 @@
 <?php
 include("conectaDB.php");
-$sql = "SELECT * FROM usuarios";
+$sql = "SELECT * FROM usuarios WHERE usu_ativo = 's'";
 $resultado = mysqli_query($link, $sql);
 ?>
 <!DOCTYPE html>
@@ -17,6 +17,7 @@ $resultado = mysqli_query($link, $sql);
 <body>
     <a href="homesistema.html"><input type="button" id="menuhome" value="HOME SISTEMA"></a>
         <div class="container">
+            <input type="radio" name="listadesativados" value="n"><?$checar = ($tbl[3] == "n")? "checked":""?>LISTA DESATIVADOS<br>
             <table border="1">
                 <tr>
                     <th>HOME</th>
@@ -31,12 +32,11 @@ $resultado = mysqli_query($link, $sql);
                         <td><?= $tbl[1]?></td>
                         <td><a href="alterarusuario.php?id=<?=$tbl[0]?>"><input type="button" value="ALTERAR"></a></td>
                         <!-- <td><a href="excluirusuario.php?id=<//?=$tbl[0]?>"><input type="button" value="EXCLUIR"></a></td> -->
-                        <td><?=$tbl[3]?></td>;
-                        </tr>
+                        <td><?= $check = ($tbl[3] == "s")?"SIM":"NÃO"?></td>
+                        </tr>   
                         <?php
                     }
                     ?>
-
             </table>
         </div>
 </body>
