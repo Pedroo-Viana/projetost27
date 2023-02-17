@@ -16,8 +16,8 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
         echo"<script>window.alert('PRODUTO JA CADASTRADO');</script>";
     }
     else{
-        $sql = "INSERT INTO produtos (pro_nome, pro_preco, pro_quantidade, pro_descricao) 
-        VALUES ('$nome', '$preco', '$quantidade', '$descricao')";
+        $sql = "INSERT INTO produtos (pro_nome, pro_preco, pro_quantidade, pro_descricao, pro_ativo) 
+        VALUES ('$nome', '$preco', '$quantidade', '$descricao', 's')";
         mysqli_query($link,$sql);
         header("Location: listaprodutos.php");
     }

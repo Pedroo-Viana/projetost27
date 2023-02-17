@@ -49,7 +49,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
 
         <form action="cadastrausuario.php" method="POST">
             <h1>CADASTRO DE USUARIO</h1>
-            <input type="text" name="nome" id="nome" placeholder="Nome">
+            <input type="text" name="nome" id="nome" placeholder="Nome" req>
             <br>
             <input type="password" id="senha" name="senha" placeholder="Senha">
             <img id="olinho" onclick="mostrarsenha()" src="assets/eye.svg">
