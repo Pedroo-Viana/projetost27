@@ -4,23 +4,25 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     $preco = $_POST ['preco'];
     $quantidade = $_POST['quantidade'];
     $descricao = $_POST ['descricao'];
-    //$descricao= $_POST ['descricao'];
+    #VARIAVEIS BUSCANDO AS INFORMAÇÕES NO BANCO DE DADOS    
     Include ("conectaDB.php");
-    #VERIFICA USUARIO EXISTE
+    #VERIFICA SE O PRODUTO JÁ ESTA CADASTRADO
     $sql = "SELECT COUNT(pro_nome) FROM produtos WHERE pro_nome= '$nome' AND pro_preco='$preco'";
     $resultado = mysqli_query($link, $sql);
-    while($tbl = mysqli_fetch_array($resultado)){
+    while($tbl = mysqli_fetch_array($resultado)){        
         $cont =$tbl[0];
     }
     if($cont == 1){
         echo"<script>window.alert('PRODUTO JA CADASTRADO');</script>";
     }
+    #EXIBE ISSO QUANDO O NOME DO PRODUTO JÁ EXISTE
     else{
         $sql = "INSERT INTO produtos (pro_nome, pro_preco, pro_quantidade, pro_descricao, pro_ativo) 
         VALUES ('$nome', '$preco', '$quantidade', '$descricao', 's')";
         mysqli_query($link,$sql);
         header("Location: listaprodutos.php");
     }
+    #INSERE O PRODUTO NA TABELA E NO BANCO DE DADOS SQL
 }
 ?>
 <!DOCTYPE html>
@@ -29,7 +31,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CADASTRO DE USUARIOS</title>
+    <title>CADASTRO DE PRODUTOS</title>
     <link rel="stylesheet" href="./estilo.css">
 </head>
 <body>
@@ -46,6 +48,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
             <input type="text" id="descricao" name="descricao" placeholder="Descricao">          
             <br><br>
             <input type="submit" name="cadastrar" id="cadastrar" value="CADASTRAR">
+            #USADO PARA INSERIR AS INFORMAÇÕES
         </form>
     </div>    
 </body>

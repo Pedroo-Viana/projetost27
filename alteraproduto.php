@@ -1,28 +1,30 @@
 <?php
 include("conectaDB.php");
 
-if($_SERVER['REQUEST_METHOD'] == 'POST')
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
 $id = $_POST['id'];
 $nome = $_POST['nome'];
 $descricao = $_POST['descricao'];
 $preco = $_POST['preco'];
+$quantidade = $_POST['quantidade'];
 $ativo = $_POST['ativo'];
 
-$sql = "UPDATE produtos SET pro_nome = '$nome', pro_descricao = '$descricao', pro_preco = '$preco', pro_ativo = '$ativo'";
+$sql = "UPDATE produtos SET pro_nome = '$nome', pro_descricao = '$descricao', pro_preco = '$preco', pro_ativo = '$ativo' WHERE pro_id = $id";
 mysqli_query($link, $sql);
 
-header("Location: listaproduto.php");
+header("Location: listaprodutos.php");
 echo"<script>windown.alert('Produto ALTERADO!');</script>";
 exit();
+}
 $id = $_GET['id'];
 $sql = "SELECT * FROM produtos WHERE pro_id = '$id'";
 $resultado = mysqli_query($link, $sql);
 while($tbl = mysqli_fetch_array($resultado)){
     $nome = $tbl[1];
     $ativo = $tbl[5];
-    $descricao = $tbl[1];
-    $preco = $tbl[3];
-    $nome = $tbl[1];
+    $descricao = $tbl[2];
+    $preco = $tbl[4];
+    $quantidade = $tbl[3];
     
 }
 ?>
@@ -38,13 +40,13 @@ while($tbl = mysqli_fetch_array($resultado)){
 <body>
     <div>
         <form action="alteraproduto.php" method="post">
-            <input type="hidden" name="id" value="<?=$id;?>">
+            <input type="text" name="nome" value="<?=$nome;?>">
             <label>NOME</label>
-            <input type="hidden" name="id" value="<?=$id;?>">
+            <input type="text" name="descricao" value="<?=$descricao;?>">
             <label>DESCRIÇÃO</label>
-            <input type="hidden" name="id" value="<?=$id;?>">
+            <input type="number" name="quantidade" value="<?=$quantidade;?>">
             <label>QUANTIDADE</label>
-            <input type="hidden" name="id" value="<?=$id;?>">
+            <input type="number" name="preco" value="<?=$preco;?>">
             <label>PREÇO</label>
             <input type="hidden" name="id" value="<?=$id;?>">
             <br><br>

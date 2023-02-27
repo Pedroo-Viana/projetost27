@@ -37,6 +37,7 @@ while ($tbl = mysqli_fetch_array($resultado)) {
 </head>
 
 <body>
+<a href="homesistema.php"><input type="button" id="menuhome" value="HOME SISTEMA"></a>
     <div>
         <form action="alterarusuario.php" method="post">
             <input type="hidden" value="<?= $id ?>" name="id"> <!-- Coleta o id de forma oculta -->
