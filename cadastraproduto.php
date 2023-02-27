@@ -45,11 +45,21 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
             <br><br>
             <input type="text" id="quantidade" name="quantidade" placeholder="Quantidade">
             <br><br>
-            <input type="text" id="descricao" name="descricao" placeholder="Descricao">          
+            <input type="text" id="descricao" name="descricao" placeholder="Descricao"> <br><br> 
+            <label for="">IMAGEM</label>
+            <input type="file" name="foto1" id="img1" onchange="foot1()">
+            <br>
+            <img src="img/semimg.png" width="50px" id="foto1a">  
+
             <br><br>
             <input type="submit" name="cadastrar" id="cadastrar" value="CADASTRAR">
-            #USADO PARA INSERIR AS INFORMAÇÕES
+            <!-- #USADO PARA INSERIR AS INFORMAÇÕES -->
         </form>
+        <script>
+            function foto1(){
+            document.getElementById("foto1a").src = "img/" (document.getElementById("img1").value)slice(12);
+            }
+        </script>
     </div>    
 </body>
 </html>
