@@ -1,11 +1,17 @@
 <?php 
-if($_SERVER ["REQUEST_METHOD"] == "POST"){
-    $nome = $_POST ['nome'];
-    $preco = $_POST ['preco'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+    $id = $_POST['id'];   
+    $nome = $_POST['nome'];
+    $descricao = $_POST['descricao'];
     $quantidade = $_POST['quantidade'];
-    $descricao = $_POST ['descricao'];
+    $preco = $_POST['preco'];
+    $foto1 = $_POST ['foto1'];
     #VARIAVEIS BUSCANDO AS INFORMAÇÕES NO BANCO DE DADOS    
-    Include ("conectaDB.php");
+    Include ("conectaDB.php");   
+    
+
+        $ativo = $_POST['ativo'];
+        $sql = "UPDATE usuarios SET usu_senha = '$senha', usu_nome = '$nome', usu_ativo = '$ativo' WHERE usu_id = $id";
     #VERIFICA SE O PRODUTO JÁ ESTA CADASTRADO
     $sql = "SELECT COUNT(pro_nome) FROM produtos WHERE pro_nome= '$nome' AND pro_preco='$preco'";
     $resultado = mysqli_query($link, $sql);
@@ -18,12 +24,11 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     #EXIBE ISSO QUANDO O NOME DO PRODUTO JÁ EXISTE
     else{
         $sql = "INSERT INTO produtos (pro_nome, pro_preco, pro_quantidade, pro_descricao, pro_ativo) 
-        VALUES ('$nome', '$preco', '$quantidade', '$descricao', 's')";
+        VALUES ('$nome', '$preco', '$quantidade', '$descricao', 's', '$foto1')";
         mysqli_query($link,$sql);
         header("Location: listaprodutos.php");
     }
     #INSERE O PRODUTO NA TABELA E NO BANCO DE DADOS SQL
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +37,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CADASTRO DE PRODUTOS</title>
-    <link rel="stylesheet" href="./estilo.css">
+    <link rel="stylesheet" href="./newestilo.css">
 </head>
 <body>
     <a href="homesistema.php"><input type="button" id="menuhome" value="HOME SISTEMA"></a>
@@ -47,7 +52,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
             <br><br>
             <input type="text" id="descricao" name="descricao" placeholder="Descricao"> <br><br> 
             <label for="">IMAGEM</label>
-            <input type="file" name="foto1" id="img1" onchange="foot1()">
+            <input type="file" name="foto1" id="img1" onchange="foto1()">
             <br>
             <img src="img/semimg.png" width="50px" id="foto1a">  
 
@@ -57,7 +62,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
         </form>
         <script>
             function foto1(){
-            document.getElementById("foto1a").src = "img/" (document.getElementById("img1").value)slice(12);
+            document.getElementById("foto1a").src = "img/" (document.getElementById("img1").value).slice(12);
             }
         </script>
     </div>    

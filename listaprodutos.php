@@ -24,7 +24,7 @@ if($_SERVER ['REQUEST_METHOD'] == 'POST'){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LISTA PRODUTOS</title>
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="./newestilo.css">
 </head>
 
 <body>
@@ -40,7 +40,8 @@ if($_SERVER ['REQUEST_METHOD'] == 'POST'){
                     <th>DESCRIÇÃO</th>
                     <th>QUANTIDADE</th>
                     <th>PREÇO (UNIDADE)</th> 
-                    <th>ALTERAR</th>    
+                    <th>ALTERAR</th>
+                    <th>IMAGEM</th>    
                     <th>STATUS</th>                              
                 <tr>
                     <?php
