@@ -42,12 +42,16 @@ while($tbl = mysqli_fetch_array($resultado)){
         <form action="alteraproduto.php" method="post">
             <input type="text" name="nome" value="<?=$nome;?>">
             <label>NOME</label>
+            <br><br>
             <input type="text" name="descricao" value="<?=$descricao;?>">
             <label>DESCRIÇÃO</label>
-            <input type="number" name="quantidade" value="<?=$quantidade;?>">
+            <br><br>
+            <input type="text" name="quantidade" value="<?=$quantidade;?>">
             <label>QUANTIDADE</label>
-            <input type="number" name="preco" value="<?=$preco;?>">
+            <br><br>
+            <input type="number" name="preco" value="<?=$preco;?>">            
             <label>PREÇO</label>
+            <br><br>
             <input type="hidden" name="id" value="<?=$id;?>">
             <br><br>
             <label>Status: <?= $check = ($ativo == 's') ? "ATIVO" : "INATIVO"; ?><br></label><br>
@@ -56,7 +60,7 @@ while($tbl = mysqli_fetch_array($resultado)){
             
             <input type="radio" name="ativo" value="n">DESATIVAR 
 
-            <br>
+            <br><br>
             <input type="submit" value="SALVAR">
         </form>
     </div>

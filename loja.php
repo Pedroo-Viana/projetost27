@@ -28,7 +28,7 @@ if($_SERVER ['REQUEST_METHOD'] == 'POST'){
 </head>
 
 <body>
-<a href="homesistema.html"><input type="button" id="menuhome" value="HOME SISTEMA"></a>
+<a href="loja.php"><input type="button" id="menuhome" value="HOME SISTEMA"></a>
     <form action="listaprodutos.php" method="post">
     <input type="radio" name="ativo" value="s" required onclick="submit()"<?=$ativo=='s'? "checked":""?>>Ativar<br>
     <input type="radio" name="ativo" value="n" required onclick="submit()"<?=$ativo=='n'? "checked":""?>>Desativa
@@ -42,7 +42,7 @@ if($_SERVER ['REQUEST_METHOD'] == 'POST'){
                     <th>PREÇO (UNIDADE)</th> 
                     <th>STATUS</th>
                     <th>IMAGEM</th>    
-                    <th>ALTERAR DADOS</th>                              
+                    <th>ADICIONAR CARRINHO  </th>                              
                 <tr>
                     <?php
                     while ($tbl = mysqli_fetch_array($resultado)){

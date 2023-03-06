@@ -30,7 +30,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="./newestilo.css">
 </head>
 <body>
-    <a href="homesistema.php"><input type="button" id="menuhome" value="HOME SISTEMA"></a>
+    <a href="homesistema.html"><input type="button" id="menuhome" value="HOME SISTEMA"></a>
     <div>
         <!-- script para mostrar senha -->
         <script>
@@ -51,8 +51,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
             <h1>CADASTRO DE USUARIO</h1>
             <input type="text" name="nome" id="nome" placeholder="Nome" req>
             <br>
-            <input type="password" id="senha" name="senha" placeholder="Senha">
-            <img id="olinho" onclick="mostrarsenha()" src="assets/eye.svg">
+            <input type="password" id="senha" name="senha" placeholder="Senha">            
             <br>   <br>
             <input type="submit" name="cadastrar" id="cadastrar" value="CADASTRAR">
         </form>

@@ -1,17 +1,14 @@
 <?php 
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-    $id = $_POST['id'];   
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){       
     $nome = $_POST['nome'];
     $descricao = $_POST['descricao'];
     $quantidade = $_POST['quantidade'];
     $preco = $_POST['preco'];
     $foto1 = $_POST ['foto1'];
     #VARIAVEIS BUSCANDO AS INFORMAÇÕES NO BANCO DE DADOS    
-    Include ("conectaDB.php");   
-    
+    Include ("conectaDB.php");  
 
-        $ativo = $_POST['ativo'];
-        $sql = "UPDATE usuarios SET usu_senha = '$senha', usu_nome = '$nome', usu_ativo = '$ativo' WHERE usu_id = $id";
+        $sql = "SELECT COUNT(pro_id) FROM produto WHERE  pro_nome = '$nome'";
     #VERIFICA SE O PRODUTO JÁ ESTA CADASTRADO
     $sql = "SELECT COUNT(pro_nome) FROM produtos WHERE pro_nome= '$nome' AND pro_preco='$preco'";
     $resultado = mysqli_query($link, $sql);
@@ -23,12 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     }
     #EXIBE ISSO QUANDO O NOME DO PRODUTO JÁ EXISTE
     else{
-        $sql = "INSERT INTO produtos (pro_nome, pro_preco, pro_quantidade, pro_descricao, pro_ativo) 
+        $sql = "INSERT INTO produtos (pro_nome, pro_preco, pro_quantidade, pro_descricao, pro_ativo, imagem1) 
         VALUES ('$nome', '$preco', '$quantidade', '$descricao', 's', '$foto1')";
         mysqli_query($link,$sql);
         header("Location: listaprodutos.php");
     }
     #INSERE O PRODUTO NA TABELA E NO BANCO DE DADOS SQL
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     <link rel="stylesheet" href="./newestilo.css">
 </head>
 <body>
-    <a href="homesistema.php"><input type="button" id="menuhome" value="HOME SISTEMA"></a>
+    <a href="homesistema.html"><input type="button" id="menuhome" value="HOME SISTEMA"></a>
     <div>        
         <form action="cadastraproduto.php" method="POST">
             <h1>CADASTRO DE PRODUTOS</h1>
