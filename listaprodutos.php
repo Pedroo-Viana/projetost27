@@ -53,7 +53,7 @@ if($_SERVER ['REQUEST_METHOD'] == 'POST'){
                         <td><?= $tbl[3]?></td>
                         <td><?= $tbl[4]?></td>  
                         <td><?= $check = ($tbl[5] == "s")?"SIM":"NÃO"?></td>                     
-                        <td><?= $tbl[6]?></td>                  
+                        <td><img src="data:image/jpeg;base64,<?=$tbl[6]?>" width="100" height="100"></td>                  
                         
                         <td><a href="alteraproduto.php?id=<?=$tbl[0]?>"><input type="button" value="ALTERAR"></a></td>
                                  
